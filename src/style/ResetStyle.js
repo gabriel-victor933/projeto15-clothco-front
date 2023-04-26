@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components"
 
-
 const ResetStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -19,10 +18,10 @@ const ResetStyle = createGlobalStyle`
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font: inherit;
+		font-family: inherit sans-serif;
+		font-weight: 400;
 		vertical-align: baseline;
 	}
-	/* HTML5 display-role reset for older browsers */
 	article, aside, details, figcaption, figure, 
 	footer, header, hgroup, menu, nav, section {
 		display: block;
@@ -45,8 +44,5 @@ const ResetStyle = createGlobalStyle`
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
-
-
-`
-
+`;
 export default ResetStyle
