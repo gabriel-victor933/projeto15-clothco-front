@@ -87,6 +87,7 @@ const Panel = styled.section`
         
         
     button {
+    color: #000000;
     font-size: 17px;
     background-color: rgb(252, 228, 119);
     border: none;
