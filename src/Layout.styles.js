@@ -34,22 +34,42 @@ export const Header = styled.header`
   @media (max-width: 768px) {
     height: 92px;
   }
-  h1 {
+
+  h4 {
+    display: inline-block;
+    position: relative;
     font-size: 32px;
     font-family: "Vina Sans", cursive;
   }
+  h4:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: #121212;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  h4:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
   div:last-child {
     display: flex;
     gap: 20px;
   }
   div:last-child svg {
-    cursor: pointer;
     font-size: 18px;
-    padding: 0.8px;
+    padding: 1px;
     transition: all 0.2s ease-in-out;
   }
   div:last-child svg:hover {
-    padding: 0px;
+    cursor: pointer;
+    padding: 0.5px;
     font-size: 19px;
   }
 `;
@@ -98,7 +118,6 @@ export const About = styled.div`
     gap: 10px;
   }
   div svg {
-    cursor: pointer;
     font-size: 22px;
     padding: 1px;
   }
@@ -135,14 +154,11 @@ export const Info = styled.div`
   }
   div q {
     font-size: 9.5px;
-    width: 420px;
     letter-spacing: 0.5px;
     line-height: 14px;
-  }
-  div q a {
-    text-decoration: none;
-    color: initial;
-    transition: all 1s ease-in-out;
+    width: 100%;
+    margin-left: 12px;
+    text-align: start;
   }
   div q a:hover {
     text-decoration: underline;
@@ -150,13 +166,14 @@ export const Info = styled.div`
   @media (max-width: 768px) {
     padding: 36px 0;
     gap: 24px;
-
     div {
       flex-direction: column;
       gap: 16px;
     }
     div q {
+      margin-left: 0px;
       width: 80%;
+      text-align: center;
     }
   }
 `;

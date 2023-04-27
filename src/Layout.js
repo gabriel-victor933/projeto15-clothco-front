@@ -1,4 +1,4 @@
-import { TfiSearch, TfiBag } from "react-icons/tfi";
+import { TfiSearch, TfiUser, TfiBag } from "react-icons/tfi";
 import { Body, Header, About, Info, Footer } from "./Layout.styles.js";
 import PaymentMethod from "./components/PaymentMethod";
 import {
@@ -9,14 +9,24 @@ import {
   AiFillYoutube,
 } from "react-icons/ai";
 import logo from "./assets/Logo.svg";
+import { Link } from "react-router-dom";
 const Layout = ({ children }) => {
   return (
     <Body>
       <Header>
-        <h1>Clothes co.</h1>
+        <Link to="/">
+          <h4>Clothes co.</h4>
+        </Link>
         <div>
-          <TfiSearch />
-          <TfiBag />
+          <Link to="/signUp">
+            <TfiSearch />
+          </Link>
+          <Link to="/signIn">
+            <TfiUser />
+          </Link>
+          <Link to="/cart">
+            <TfiBag />
+          </Link>
         </div>
       </Header>
       <main>{children}</main>

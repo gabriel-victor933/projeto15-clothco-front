@@ -20,6 +20,8 @@ const ResetStyle = createGlobalStyle`
 		font-size: 100%;
 		font-family: "Inter" sans-serif;
 		font-weight: 400;
+		text-decoration: none;
+		color: #121212;
 		vertical-align: baseline;
 	}
 	article, aside, details, figcaption, figure, 
