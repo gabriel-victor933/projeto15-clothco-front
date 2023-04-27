@@ -29,6 +29,11 @@ export default function Products(){
                 </Button>
                 <button className="cart">Add to cart</button>
                 <button>Buy it now</button>
+
+                <h2>Details:</h2>
+                <ol>
+                  {details.map((d)=><li>{d}</li>)}
+                </ol>
             </div>
         </Panel>
     )
@@ -38,8 +43,6 @@ const Panel = styled.section`
   display: flex;
   padding: 19px;
 
-  //remover depois
-  min-height: 600px;
   
   .image{
     width: 60%;
@@ -141,6 +144,25 @@ const Panel = styled.section`
     }
   }
 
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: rgba(18, 18, 18, 0.75);
+  }
+
+  ol{
+    list-style-type: disc;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    font-size: 20px;
+  }
+
+  li{
+    margin: 7px 0px;
+    color: rgba(18, 18, 18, 0.75);
+  }
+
 `
 
 const Button = styled.div`
@@ -163,3 +185,11 @@ const Button = styled.div`
 
   }
 `;
+
+
+const details = ["Made in the USA",
+"Genuine wool broadcloth, white felt \"Coursework C\" icon  with combined embroidery",
+"Soft visor with green satin under visor",
+"Vintage hair cloth backed buckram crown",
+"Satin taping with cotton sweatband",
+"Black leather strap and black metal press closure"]

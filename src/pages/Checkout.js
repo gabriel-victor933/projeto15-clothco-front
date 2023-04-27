@@ -1,19 +1,23 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { useRef } from "react";
 
 export default function Checkout(){
   
-  const serverResponse = true;
+  const serverResponse = false;
 
-  if(!serverResponse) return <Sucess />
+  const myRef = useRef(null)
+  console.log(myRef)
+
+  if(!serverResponse) return <Sucess myRef={myRef}/>
 
   return  <Failure />
 }
 
-function Sucess(){
+function Sucess({myRef}){
   return(
-    <Section>
-      <h1>Congratulations! Your purchase is complete. </h1>
+    <Section ref={myRef}>
+      <h1 ref={myRef}>Congratulations! Your purchase is complete. </h1>
       <p>An email confirmation will be sent to you shortly.</p>
       <Link to="/">
         <button>Continue shopping</button>
