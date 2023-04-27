@@ -19,6 +19,7 @@ const Container = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 40px;
   h1 {
     font-size: 40px;
     margin-top: 45px;
