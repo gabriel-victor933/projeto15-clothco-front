@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 export default function Cart() {
 
-  const [selectedItems, setSelectedItems] = useState([])
+  const [selectedItems, setSelectedItems] = useState([exemploItem,exemploItem2])
 
   const total = useMemo(()=>{
     return calculateTotal()
