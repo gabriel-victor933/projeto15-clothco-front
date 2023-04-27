@@ -18,7 +18,7 @@ const ResetStyle = createGlobalStyle`
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font-family: inherit sans-serif;
+		font-family: "Inter" sans-serif;
 		font-weight: 400;
 		vertical-align: baseline;
 	}
