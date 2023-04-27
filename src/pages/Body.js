@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 const BodyStyle = styled.div`
   width: 100%;
@@ -148,11 +149,13 @@ const Body = () => {
   return (
     <BodyStyle>
       {products.map((item) => (
+        <Link to={`/products/${item.id}`}>
         <div key={item.id}>
           <img src={item.image} alt={item.title} />
           <h6>{item.title}</h6>
           <p>{item.price}</p>
         </div>
+        </Link>
       ))}
     </BodyStyle>
   );
