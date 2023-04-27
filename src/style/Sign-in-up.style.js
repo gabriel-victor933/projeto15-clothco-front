@@ -46,7 +46,6 @@ const SignForm = styled.form`
     letter-spacing: 1px;
     background-color: #000;
     color: #fff;
-    cursor: pointer;
   }
   a {
     display: flex;

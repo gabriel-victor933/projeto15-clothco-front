@@ -33,7 +33,6 @@ const Container = styled.section`
     height: 45px;
     box-sizing: content-box;
     :hover {
-      cursor: pointer;
       box-shadow: 0px 0px 1px 1px rgb(252, 228, 119);
     }
   }
