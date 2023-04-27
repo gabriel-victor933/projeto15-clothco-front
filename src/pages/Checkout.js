@@ -6,15 +6,12 @@ export default function Checkout(){
   
   const serverResponse = false;
 
-  const myRef = useRef(null)
-  console.log(myRef)
-
-  if(!serverResponse) return <Sucess myRef={myRef}/>
+  if(!serverResponse) return <Sucess />
 
   return  <Failure />
 }
 
-function Sucess({myRef}){
+function Sucess(){
   return(
     <Section ref={myRef}>
       <h1 ref={myRef}>Congratulations! Your purchase is complete. </h1>
