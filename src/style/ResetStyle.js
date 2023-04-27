@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const ResetStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -18,7 +18,7 @@ const ResetStyle = createGlobalStyle`
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font-family: 'Inter', sans-serif;
+		font-family: "Inter" sans-serif;
 		font-weight: 400;
 		vertical-align: baseline;
 	}
@@ -45,4 +45,4 @@ const ResetStyle = createGlobalStyle`
 		border-spacing: 0;
 	}
 `;
-export default ResetStyle
+export default ResetStyle;
