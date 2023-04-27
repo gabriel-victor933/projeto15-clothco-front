@@ -44,7 +44,6 @@ const Section = styled.section`
   }
 `;
 const Title = styled.div`
-  font-weight: 800;
   font-size: 52px;
   line-height: 50px;
   display: flex;
@@ -54,6 +53,7 @@ const Title = styled.div`
   margin-bottom: 10px;
   h1 {
     font-family: "Instrument Serif", serif;
+    font-weight: 800;
   }
   a {
     text-decoration: underline;
