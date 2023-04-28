@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { useRef } from "react";
 
 export default function Checkout(){
   
@@ -13,8 +12,8 @@ export default function Checkout(){
 
 function Sucess(){
   return (
-    <Section ref={myRef}>
-      <h1 ref={myRef}>Congratulations! Your purchase is complete. </h1>
+    <Section>
+      <h1>Congratulations! Your purchase is complete. </h1>
       <p>An email confirmation will be sent to you shortly.</p>
       <Link to="/">
         <button>Continue shopping</button>

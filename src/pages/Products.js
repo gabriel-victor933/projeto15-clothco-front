@@ -1,24 +1,37 @@
 import { useParams } from "react-router"
 import styled from "styled-components"
 import {HiPlusSm, HiMinusSm } from "react-icons/hi";
-
-const imagem_frente_URL = "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Ebbets-C_Cap_Camel_Front-Angle_1080x_8d228c8c-2958-43f0-bd30-7258cb3df3fc.webp?v=1676406497&width=823"
-const imagem_costa_URL = "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Ebbets-C_Cap_Camel_Back_1080x_50142e26-b3dc-4003-8bc7-5f5a2cf98fdd.webp?v=1676406501&width=823"
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Products(){
 
     const { id } = useParams()
 
+    const [item, setItem] = useState({})
+
+    useEffect(()=>{
+
+      axios.get(`https://clothco-api.onrender.com/product/${id}`)
+      .then(({data})=>{
+        setItem(data)
+      })
+      .catch((erro)=>{
+        console.log(erro)
+      })
+    },[id])
+
+    
+
     return (
         <Panel>
             <div className="image">
-                <img src={imagem_frente_URL} alt="img"/>
-                <img src={imagem_costa_URL} alt="img"/>
+                <img src={item.img} alt={item.title}/>
+                <img src={item.imgb} alt={item.title}/>
             </div>
             <div className="info">
-                <h1>Cap Wool</h1>
-                <p className="total">$48.00</p>
+                <h1>{item.title}</h1>
+                <p className="total">${item.price?.toFixed(2)}</p>
                 <p>Quantity</p>
                 <Button>
                     <div>
@@ -30,9 +43,11 @@ export default function Products(){
                 <button className="cart">Add to cart</button>
                 <button>Buy it now</button>
 
+                <h2>Type: {item.type}</h2>
+                <h2>Color: {item.color}</h2>
                 <h2>Details:</h2>
                 <ol>
-                  {details.map((d)=><li>{d}</li>)}
+                  {item.description?.map((d,i)=><li key={i}>{d}</li>)}
                 </ol>
             </div>
         </Panel>
@@ -43,7 +58,6 @@ const Panel = styled.section`
   display: flex;
   padding: 19px;
 
-  
   .image{
     width: 60%;
 
@@ -97,7 +111,8 @@ const Panel = styled.section`
     border-radius: 5px;
     width: 100%;
     height: 45px;
-    margin: 7px 0px;
+    margin-top: 7px;
+    margin-bottom: 30px;
     :hover {
       box-shadow: 0px 0px 1px 1.3px rgb(252, 228, 119);
     }
@@ -109,6 +124,7 @@ const Panel = styled.section`
     box-sizing: border-box;
     border: 1px solid black;
     box-shadow: rgb(18,18,18) 0px 0px 0px 0.3px;
+    margin-bottom: 7px;
 
     :hover{
         box-shadow: rgb(18,18,18) 0px 0px 0px 1.3px;
@@ -145,11 +161,11 @@ const Panel = styled.section`
   }
 
   h2 {
-    margin-top: 40px;
-    margin-bottom: 10px;
+    margin-top: 30px;
     font-size: 20px;
     color: rgba(18, 18, 18, 0.75);
   }
+
 
   ol{
     list-style-type: disc;
@@ -185,11 +201,3 @@ const Button = styled.div`
 
   }
 `;
-
-
-const details = ["Made in the USA",
-"Genuine wool broadcloth, white felt \"Coursework C\" icon  with combined embroidery",
-"Soft visor with green satin under visor",
-"Vintage hair cloth backed buckram crown",
-"Satin taping with cotton sweatband",
-"Black leather strap and black metal press closure"]

@@ -9,11 +9,6 @@ export default function Cart() {
   const [selectedItems, setSelectedItems] = useState([exemploItem, exemploItem2])
 
   const total = useMemo(()=>{
-    return calculateTotal()
-  },[selectedItems])
-
-
-  function calculateTotal(){
     if (selectedItems.length === 0) return 0
 
     const initial = 0
@@ -22,12 +17,10 @@ export default function Cart() {
       initial
     );
 
-    console.log(sum)
     return sum
-  }
+  },[selectedItems])
 
   if (selectedItems.length === 0) return <EmptyCart />;
-
 
   return (
     <Section>
@@ -107,7 +100,6 @@ const Products = styled.div`
   border-bottom: 1px solid rgba(18, 18, 18, 0.1);
   padding: 40px 0px;
 `;
-
 const Total = styled.div`
     width: 100%;
     display: flex;
@@ -146,6 +138,6 @@ const Total = styled.div`
 `
 
 
-const exemploItem = {id:1, title: "Cap Ebbets Corduroy", price: 48.00, quantity: 1 ,image: "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Varsity-C_Cap-Corduroy-Yellow_Front_1080x_6fe179e1-b3f3-452b-a2d4-ee0c1d70e7c9.webp?v=1676406573&width=300"}
+const exemploItem = {id:1, title: "Cap Ebbets Corduroy", price: 58.00, quantity: 1 ,image: "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Varsity-C_Cap-Corduroy-Yellow_Front_1080x_6fe179e1-b3f3-452b-a2d4-ee0c1d70e7c9.webp?v=1676406573&width=300"}
 const exemploItem2 = {id:2, title: "Cap Ebbets Corduroy", price: 48.00, quantity: 1 ,image: "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Varsity-C_Cap-Corduroy-Yellow_Front_1080x_6fe179e1-b3f3-452b-a2d4-ee0c1d70e7c9.webp?v=1676406573&width=300"}
 
