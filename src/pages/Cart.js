@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 export default function Cart() {
 
-  const [selectedItems, setSelectedItems] = useState([])
+  const [selectedItems, setSelectedItems] = useState([exemploItem, exemploItem2])
 
   const total = useMemo(()=>{
     return calculateTotal()
@@ -127,6 +127,7 @@ const Total = styled.div`
     margin-left: 15px;
   }
   button {
+    color: #000000;
     font-size: 17px;
     background-color: rgb(252, 228, 119);
     border: none;
