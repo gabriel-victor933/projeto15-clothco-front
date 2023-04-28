@@ -12,7 +12,7 @@ export default function Checkout(){
 }
 
 function Sucess(){
-  return(
+  return (
     <Section ref={myRef}>
       <h1 ref={myRef}>Congratulations! Your purchase is complete. </h1>
       <p>An email confirmation will be sent to you shortly.</p>
@@ -20,7 +20,7 @@ function Sucess(){
         <button>Continue shopping</button>
       </Link>
     </Section>
-)
+  );
 }
 
 function Failure(){
