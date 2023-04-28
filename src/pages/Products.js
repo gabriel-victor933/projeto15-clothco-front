@@ -1,18 +1,21 @@
-import { useParams } from "react-router"
+import { useParams, useNavigate } from "react-router"
 import styled from "styled-components"
 import {HiPlusSm, HiMinusSm } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 export default function Products(){
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const [item, setItem] = useState({})
+    const [quantity,setQuantity] = useState(1)
 
     useEffect(()=>{
 
-      axios.get(`https://clothco-api.onrender.com/product/${id}`)
+      axios.get(`${process.env.REACT_APP_API_URL}product/${id}`)
       .then(({data})=>{
         setItem(data)
       })
@@ -21,8 +24,21 @@ export default function Products(){
       })
     },[id])
 
-    
+    function changeQuantity(i){
+      if(quantity > 1 || i === 1)  setQuantity(quantity + i)
+    }
 
+    function addToCart(){
+      const order = {_id: item._id, title: item.title, quantity}
+      console.log(order)
+      //send to cart
+    }
+
+    function buyNow(){
+      addToCart()
+      navigate("/cart")
+    }
+    
     return (
         <Panel>
             <div className="image">
@@ -35,13 +51,13 @@ export default function Products(){
                 <p>Quantity</p>
                 <Button>
                     <div>
-                        <HiMinusSm />
-                        <p>1</p>
-                        <HiPlusSm />
+                        <HiMinusSm onClick={()=>changeQuantity(-1)}/>
+                        <p>{quantity}</p>
+                        <HiPlusSm onClick={()=>changeQuantity(1)}/>
                     </div>
                 </Button>
-                <button className="cart">Add to cart</button>
-                <button>Buy it now</button>
+                <button className="cart" onClick={addToCart}>Add to cart</button>
+                <button onClick={buyNow}>Buy it now</button>
 
                 <h2>Type: {item.type}</h2>
                 <h2>Color: {item.color}</h2>

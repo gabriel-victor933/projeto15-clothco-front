@@ -10,7 +10,7 @@ const Body = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const { data } = await axios.get("https://clothco-api.onrender.com/");
+        const { data } = await axios.get(process.env.REACT_APP_API_URL);
         setProducts(data);
       } catch (error) {
         console.log(error);
