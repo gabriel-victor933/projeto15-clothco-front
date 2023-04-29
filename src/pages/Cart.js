@@ -17,7 +17,6 @@ export default function Cart() {
       (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
       initial
     );
-    console.log(sum)
     return sum
   },[selectedItems])
 
@@ -34,7 +33,6 @@ export default function Cart() {
       })
   },[])
 
-  console.log(selectedItems)
 
   if (selectedItems.length === 0) return <EmptyCart />;
 
@@ -52,7 +50,8 @@ export default function Cart() {
       <Products>
         {selectedItems.map((item) => (
           <Product
-            key={item.id}
+            key={item.productId}
+            id={item.productId}
             price={item.price}
             image={item.img}
             title={item.title}

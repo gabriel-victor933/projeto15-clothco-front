@@ -1,11 +1,12 @@
 import styled from "styled-components"
 import { BsTrash3 } from "react-icons/bs";
 import {HiPlusSm, HiMinusSm } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
-export default function Product({ image, title, price, quantity }) {
+export default function Product({ image, title, price, quantity,id }) {
   return (
     <Item>
-      <img src={image} alt={title} />
+      <Link to={`/products/${id}`}><img src={image} alt={title} /></Link>
       <Block>
         <div>
           <h3>{title}</h3>
@@ -30,11 +31,15 @@ const Item = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  
   img {
     width: 110px;
     height: 137.5px;
     border-radius: 4px;
   }
+
+
+  
   p {
     font-size: 16px;
   }
