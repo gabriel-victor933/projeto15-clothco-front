@@ -29,9 +29,13 @@ export default function Products(){
     }
 
     function addToCart(){
-      const order = {_id: item._id, title: item.title, quantity}
+      const order = {productId: item._id, quantity}
       console.log(order)
       //send to cart
+      const config = { headers: { Authorization: "Bearer d111f8f2-674e-49b0-9bc1-2786d655f41b" } }
+      axios.post(`${process.env.REACT_APP_API_URL}cart`,order,config)
+      .then((data)=> console.log(data))
+      .catch((err) => console.log(err))
     }
 
     function buyNow(){

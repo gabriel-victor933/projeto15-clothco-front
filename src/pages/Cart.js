@@ -2,23 +2,39 @@ import { Link } from "react-router-dom";
 import styled  from "styled-components" ;
 import EmptyCart from "../components/EmptyCart";
 import Product from "../components/Product";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import axios from "axios";
 
 export default function Cart() {
 
-  const [selectedItems, setSelectedItems] = useState([exemploItem, exemploItem2])
+  const [selectedItems, setSelectedItems] = useState([])
 
   const total = useMemo(()=>{
     if (selectedItems.length === 0) return 0
 
     const initial = 0
     const sum = selectedItems.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.price,
+      (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
       initial
     );
-
+    console.log(sum)
     return sum
   },[selectedItems])
+
+  useEffect(()=>{
+
+    const config = { headers: { Authorization: "Bearer d111f8f2-674e-49b0-9bc1-2786d655f41b" } }
+
+      axios.get(`${process.env.REACT_APP_API_URL}cart`,config)
+      .then((response)=>{
+        setSelectedItems(response.data)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+  },[])
+
+  console.log(selectedItems)
 
   if (selectedItems.length === 0) return <EmptyCart />;
 
@@ -38,14 +54,14 @@ export default function Cart() {
           <Product
             key={item.id}
             price={item.price}
-            image={item.image}
+            image={item.img}
             title={item.title}
             quantity={item.quantity}
           />
         ))}
       </Products>
       <Total>
-        <h2>Subtotal <span>${total}</span></h2>
+        <h2>Subtotal <span>${total.toFixed(2)}</span></h2>
         <Link to="/checkout">
           <button>Checkout</button>
         </Link>  
@@ -136,8 +152,3 @@ const Total = styled.div`
     align-items: center;
   }
 `
-
-
-const exemploItem = {id:1, title: "Cap Ebbets Corduroy", price: 58.00, quantity: 1 ,image: "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Varsity-C_Cap-Corduroy-Yellow_Front_1080x_6fe179e1-b3f3-452b-a2d4-ee0c1d70e7c9.webp?v=1676406573&width=300"}
-const exemploItem2 = {id:2, title: "Cap Ebbets Corduroy", price: 48.00, quantity: 1 ,image: "https://cdn.shopify.com/s/files/1/0612/2477/9832/products/Varsity-C_Cap-Corduroy-Yellow_Front_1080x_6fe179e1-b3f3-452b-a2d4-ee0c1d70e7c9.webp?v=1676406573&width=300"}
-
