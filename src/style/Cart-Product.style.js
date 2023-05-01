@@ -18,6 +18,9 @@ export const Item = styled.div`
     font-size: 16px;
     margin-top: 10px;
   }
+  h2::before {
+    content: "$";
+  }
 `;
 export const Block = styled.div`
   width: 60%;
@@ -45,6 +48,15 @@ export const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  svg {
+    padding: 1px;
+    font-size: 18px;
+    transform: all 1s ease-in-out;
+  }
+  svg:hover {
+    font-size: 20px;
+    padding: 0px;
+  }
   p {
     color: ${({ overAmount }) => (overAmount ? "crimson" : "yellowgreen")};
   }

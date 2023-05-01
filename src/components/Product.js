@@ -3,24 +3,52 @@ import { Item, Block, Button } from "../style/Cart-Product.style.js";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Product = ({ image, title, price, quantity, id }) => {
+const Product = ({ image, title, price, quantity, id, total, removing }) => {
   const [amount, setAmount] = useState(1);
   const [overAmount, setOverAmount] = useState(false);
+
+  const localUpdate = (type) => {
+    const products = JSON.parse(localStorage.getItem("cart"));
+    products.map((item) => {
+      if (item._id === id) {
+        if (type === "increase") item.quantity++;
+        if (type === "decrease") item.quantity--;
+      }
+      return item;
+    });
+    localStorage.setItem("cart", JSON.stringify(products));
+  };
+
+  const removeProduct = () => {
+    const products = JSON.parse(localStorage.getItem("cart"));
+    const newArray = products.filter((item) => {
+      if (item._id === id) {
+        return false;
+      }
+      return true;
+    });
+    localStorage.setItem("cart", JSON.stringify(newArray));
+    removing((curr) => !curr);
+  };
 
   const increase = () => {
     if (amount >= quantity) {
       setOverAmount(true);
       return;
     }
+    total(price, "increase");
+    localUpdate("increase");
     setAmount((curr) => curr + 1);
   };
 
   const decrease = () => {
     if (amount <= 0) return;
-    if (amount < quantity) {
+    if (amount <= quantity) {
       setOverAmount(false);
-      setAmount((curr) => curr - 1);
     }
+    total(price, "decrease");
+    localUpdate("decrease");
+    setAmount((curr) => curr - 1);
   };
 
   useEffect(() => {
@@ -51,10 +79,10 @@ const Product = ({ image, title, price, quantity, id }) => {
             <p>{amount}</p>
             <HiPlusSm onClick={increase} />
           </div>
-          <HiTrash />
+          <HiTrash onClick={removeProduct} />
         </Button>
       </Block>
-      <h2>${(price * amount).toFixed(2)}</h2>
+      <h2>{(price * amount).toFixed(2)}</h2>
     </Item>
   );
 };

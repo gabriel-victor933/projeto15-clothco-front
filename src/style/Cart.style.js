@@ -34,6 +34,9 @@ export const Title = styled.div`
     font-size: 12px;
     color: rgba(18, 18, 18, 0.75);
   }
+  p:nth-child(2) {
+    margin-left: min(23vw, 200px);
+  }
 `;
 
 export const Products = styled.div`
@@ -62,6 +65,9 @@ export const Total = styled.div`
     font-size: 22px;
     color: rgba(18, 18, 18, 0.75);
     margin-left: 15px;
+  }
+  span::before {
+    content: "$ ";
   }
   button {
     color: #000;
