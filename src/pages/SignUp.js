@@ -16,17 +16,18 @@ const SignUp = () => {
     if (name.length > 5 && email.length > 5 && password.length > 5 && repeatPassword === password) {
       const body = { name, email, password };
       try {
-        await axios.post("http://localhost:5000/register", body);
+        await axios.post(`${process.env.REACT_APP_API_URL}register`, body);
         navigate("/signIn");
       } catch (error) {
         console.log(error);
       }
     }
   };
+
   const inputName = ({ target }) => {
     if (target.value.length > 5) {
       setName(target.value);
-      target.style.border = "1px solid cyan";
+      target.style.border = "1px solid rgb(188, 254, 47)";
     } else {
       target.style.border = "1px solid purple";
     }
@@ -35,7 +36,7 @@ const SignUp = () => {
     const emailRegex = RegExp(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i);
     if (emailRegex.test(target.value)) {
       setEmail(target.value);
-      target.style.border = "1px solid cyan";
+      target.style.border = "1px solid rgb(188, 254, 47)";
     } else {
       target.style.border = "1px solid purple";
     }
@@ -43,7 +44,7 @@ const SignUp = () => {
   const inputPassword = ({ target }) => {
     if (target.value.length > 5) {
       setPassowrd(target.value);
-      target.style.border = "1px solid cyan";
+      target.style.border = "1px solid rgb(188, 254, 47)";
     } else {
       target.style.border = "1px solid purple";
     }
@@ -51,7 +52,7 @@ const SignUp = () => {
   const inputRepeatPassword = ({ target }) => {
     if (target.value === password) {
       setRepeatPassword(target.value);
-      target.style.border = "1px solid cyan";
+      target.style.border = "1px solid rgb(188, 254, 47)";
     } else {
       target.style.border = "1px solid purple";
     }

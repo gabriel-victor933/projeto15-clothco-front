@@ -1,11 +1,11 @@
 import { BodyStyle } from "../style/Body.style";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router";
+import axios from "axios";
+
 const Body = () => {
   const [products, setProducts] = useState([]);
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -22,7 +22,11 @@ const Body = () => {
   return (
     <BodyStyle>
       {products.map((item) => (
-        <div key={item._id} onClick={()=>{navigate(`/products/${item._id}`)}}>
+        <div
+          key={item._id}
+          onClick={() => {
+            navigate(`/products/${item._id}`);
+          }}>
           <img src={item.img} alt={item.title} />
           <h6>{item.title}</h6>
           <p>{item.price}</p>

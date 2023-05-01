@@ -1,16 +1,13 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-export default function Checkout(){
-  
+export default function Checkout() {
   const serverResponse = false;
-
-  if(!serverResponse) return <Sucess />
-
-  return  <Failure />
+  if (!serverResponse) return <Sucess />;
+  return <Failure />;
 }
 
-function Sucess(){
+function Sucess() {
   return (
     <Section>
       <h1>Congratulations! Your purchase is complete. </h1>
@@ -22,7 +19,7 @@ function Sucess(){
   );
 }
 
-function Failure(){
+function Failure() {
   return (
     <Section>
       <h1>Your order could not be completed at this time. </h1>
@@ -30,18 +27,18 @@ function Failure(){
       <Link to="/">
         <button>Continue shopping</button>
       </Link>
-    </Section> 
-  )
+    </Section>
+  );
 }
 
 const Section = styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 
-    h1 {
+  h1 {
     margin-top: 45px;
     margin-bottom: 15px;
     font-family: "Instrument Serif", serif;
@@ -52,17 +49,20 @@ const Section = styled.section`
   p {
     margin-bottom: 40px;
   }
-    button {
-    color: #000000;
+  button {
+    color: #000;
     font-size: 17px;
-    background-color: rgb(252, 228, 119);
+    background-color: rgb(188, 254, 47);
     border: none;
     border-radius: 5px;
     width: 208px;
     height: 45px;
     box-sizing: content-box;
+    border: 1px solid transparent;
+    transform: all 0.2s ease-in-out;
     :hover {
-      box-shadow: 0px 0px 1px 1px rgb(252, 228, 119);
+      border: 1px solid #000;
+      box-shadow: 0px 0px 1px 1px rgb(188, 254, 47);
     }
   }
-`
+`;
