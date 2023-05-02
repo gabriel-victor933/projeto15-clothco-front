@@ -61,10 +61,6 @@ const Cart = () => {
 
     try {
       const response = await axios.post(`${reqString}checkout`, body, config);
-      //resetar quando comprar for finalizadad e adicionada ao banco de dados de transações
-      // localStorage.removeItem("cart");
-      // setProducts([]);
-      // setTotal(0);
     } catch (err) {
       console.log(err);
     }

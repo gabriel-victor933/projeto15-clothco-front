@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import { Section } from "../style/Checkout.style";
+import { Link } from "react-router-dom";
+import CheckoutContent from "../components/CheckoutContent";
 export default function Checkout() {
   const serverResponse = false;
   if (!serverResponse) return <Sucess />;
@@ -11,6 +12,7 @@ function Sucess() {
     <Section>
       <h1>Congratulations! Your purchase is complete. </h1>
       <p>An email confirmation will be sent to you shortly.</p>
+      <CheckoutContent />
       <Link to="/">
         <button>Continue shopping</button>
       </Link>
