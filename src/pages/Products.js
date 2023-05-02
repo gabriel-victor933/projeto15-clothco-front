@@ -19,8 +19,8 @@ export default function Products() {
       .then(({ data }) => {
         setItem(data);
       })
-      .catch((erro) => {
-        console.log(erro);
+      .catch((err) => {
+        console.log(err);
       });
   }, [id]);
 

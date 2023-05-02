@@ -26,7 +26,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/:id" element={<Checkout />} />
           </Routes>
         </Layout>
       </CartContext.Provider>

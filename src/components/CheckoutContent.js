@@ -2,32 +2,25 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-const CheckoutContent = () => {
-  const [items, setItems] = useState([]);
-  const [products, setProducts] = useState([]);
+const CheckoutContent = ({ order, token }) => {
+  const [invoice, setInvoice] = useState([]);
 
   useEffect(() => {
-    const itens = JSON.parse(localStorage.getItem("cart")) || [];
-    setItems(itens);
-  }, []);
-  useEffect(() => {
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
     const getProducts = async () => {
-      if (items.length > 0) {
-        const reqString = process.env.REACT_APP_API_URL;
-        try {
-          const promises = items.map((item) => axios.get(`${reqString}product/${item._id}`));
-          const responses = await Promise.all(promises);
-          const products = responses.map((response) => response.data);
-          setProducts(products);
-          localStorage.removeItem("cart");
-        } catch (err) {
-          console.log(err);
-          setProducts([]);
-        }
+      const reqString = process.env.REACT_APP_API_URL;
+      try {
+        const orderContent = await axios.get(`${reqString}checkout/${order}`, config);
+        setInvoice(orderContent.data);
+        localStorage.removeItem("cart");
+      } catch (err) {
+        console.log(err);
+        setInvoice([]);
       }
     };
     getProducts();
-  }, [items]);
+  }, [order, token]);
 
   return (
     <Table>
@@ -40,21 +33,27 @@ const CheckoutContent = () => {
         </tr>
       </thead>
       <tbody>
-        {products.map((product, index) => (
-          <tr key={product._id}>
-            <td>{product.title}</td>
-            <td>{items[index].quantity}</td>
-            <td>$ {product.price}</td>
-            <td>$ {product.quantity * items[index].quantity}</td>
-          </tr>
-        ))}
+        {invoice.products &&
+          invoice.products.map((order, index) => (
+            <tr key={order.title}>
+              <td>{order.title}</td>
+              <td>{order.quantity}</td>
+              <td>$ {order.price}</td>
+              <td>$ {order.quantity * order.price}</td>
+            </tr>
+          ))}
         <tr>
-          <td colSpan="4">transaction _id</td>
+          <td colSpan="3"></td>
+          <td colSpan="1">$ {invoice.total}</td>
+        </tr>
+        <tr>
+          <td colSpan="4">id: {invoice._id}</td>
         </tr>
       </tbody>
     </Table>
   );
 };
+
 export default CheckoutContent;
 
 const Table = styled.table`

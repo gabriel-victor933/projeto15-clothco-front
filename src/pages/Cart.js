@@ -47,6 +47,7 @@ const Cart = () => {
   };
   const finishPayment = async () => {
     const token = localStorage.getItem("token");
+
     if (!token) return navigate("/signIn");
 
     const products = JSON.parse(localStorage.getItem("cart"));
@@ -56,7 +57,8 @@ const Cart = () => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
-      await axios.post(`${reqString}checkout`, body, config);
+      const res = await axios.post(`${reqString}checkout`, body, config);
+      navigate(`/checkout/${res.data}`);
     } catch (err) {
       console.log(err);
     }
