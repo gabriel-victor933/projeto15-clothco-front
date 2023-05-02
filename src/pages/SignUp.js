@@ -10,6 +10,7 @@ const SignUp = () => {
   const [password, setPassowrd] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const navigate = useNavigate();
+  window.scrollTo(0, 0);
 
   const formSubmit = async (event) => {
     event.preventDefault();

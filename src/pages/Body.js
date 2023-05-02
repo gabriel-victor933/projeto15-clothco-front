@@ -8,6 +8,7 @@ const Body = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const getProducts = async () => {
       try {
         const { data } = await axios.get(process.env.REACT_APP_API_URL);

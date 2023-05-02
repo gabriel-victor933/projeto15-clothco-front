@@ -8,6 +8,7 @@ export default function Checkout() {
 }
 
 function Sucess() {
+  window.scrollTo(0, 0);
   return (
     <Section>
       <h1>Congratulations! Your purchase is complete. </h1>
@@ -21,6 +22,7 @@ function Sucess() {
 }
 
 function Failure() {
+  window.scrollTo(0, 0);
   return (
     <Section>
       <h1>Your order could not be completed at this time. </h1>

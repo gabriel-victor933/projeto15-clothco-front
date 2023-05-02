@@ -13,6 +13,7 @@ export default function Products() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios
       .get(`${process.env.REACT_APP_API_URL}product/${id}`)
       .then(({ data }) => {
@@ -52,12 +53,12 @@ export default function Products() {
       </div>
       <div className="info">
         <h1>{item.title}</h1>
-        <p className="total">${item.price?.toFixed(2)}</p>
+        <p>{item.price?.toFixed(2)}</p>
         <p>Quantity</p>
         <Button>
           <div>
             <HiMinusSm onClick={() => changeQuantity(-1)} />
-            <p>{quantity}</p>
+            <h6>{quantity}</h6>
             <HiPlusSm onClick={() => changeQuantity(1)} />
           </div>
         </Button>
@@ -66,14 +67,15 @@ export default function Products() {
         </button>
         <button onClick={() => buyNow(item, quantity)}>Buy it now</button>
 
-        <h2>Type: {item.type}</h2>
-        <h2>Color: {item.color}</h2>
-        <h2>Details:</h2>
-        <ol>
-          {item.description?.map((d, i) => (
-            <li key={i}>{d}</li>
-          ))}
-        </ol>
+        <h2 className="type">{item.type}</h2>
+        <h2 className="color">{item.color}</h2>
+        <h2 className="details">
+          <ol>
+            {item.description?.map((d, i) => (
+              <li key={i}>{d}</li>
+            ))}
+          </ol>
+        </h2>
       </div>
     </Panel>
   );
