@@ -17,6 +17,7 @@ export const Section = styled.section`
   }
   p {
     margin-bottom: 40px;
+    text-align: center;
   }
   button {
     color: #000;
